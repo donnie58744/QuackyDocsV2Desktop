@@ -16,7 +16,7 @@ namespace QuackyDocsV2Desktop
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new textEditorFrame());
+            Application.Run(new mainMenuFrame());
         }
     }
 }

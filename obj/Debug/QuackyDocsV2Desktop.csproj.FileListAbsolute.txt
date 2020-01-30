@@ -16,3 +16,13 @@ C:\Users\leath\source\repos\QuackyDocsV2Desktop\QuackyDocsV2Desktop\obj\Debug\Qu
 C:\Users\leath\source\repos\QuackyDocsV2Desktop\QuackyDocsV2Desktop\obj\Debug\QuackyDocsV2Desktop.csproj.GenerateResource.cache
 C:\Users\leath\source\repos\QuackyDocsV2Desktop\QuackyDocsV2Desktop\obj\Debug\QuackyDocsV2Desktop.exe
 C:\Users\leath\source\repos\QuackyDocsV2Desktop\QuackyDocsV2Desktop\obj\Debug\QuackyDocsV2Desktop.pdb
+C:\Users\leath\source\repos\QuackyDocsV2Desktop\QuackyDocsV2Desktop\bin\Debug\Newtonsoft.Json.dll
+C:\Users\leath\source\repos\QuackyDocsV2Desktop\QuackyDocsV2Desktop\bin\Debug\Newtonsoft.Json.xml
+C:\Users\leath\source\repos\QuackyDocsV2Desktop\QuackyDocsV2Desktop\obj\Debug\QuackyDocsV2Desktop.csproj.CopyComplete
+C:\Users\leath\source\repos\QuackyDocsV2Desktop\QuackyDocsV2Desktop\obj\Debug\QuackyDocsV2Desktop.mainMenuFrame.resources
+C:\Users\leath\source\repos\QuackyDocsV2Desktop\QuackyDocsV2Desktop\bin\Debug\SautinSoft.Document.dll
+C:\Users\leath\source\repos\QuackyDocsV2Desktop\QuackyDocsV2Desktop\bin\Debug\SautinSoft.Document.xml
+C:\Users\leath\source\repos\QuackyDocsV2Desktop\QuackyDocsV2Desktop\bin\Debug\QuackyDocsV2Desktop.exe.manifest
+C:\Users\leath\source\repos\QuackyDocsV2Desktop\QuackyDocsV2Desktop\bin\Debug\QuackyDocsV2Desktop.application
+C:\Users\leath\source\repos\QuackyDocsV2Desktop\QuackyDocsV2Desktop\obj\Debug\QuackyDocsV2Desktop.exe.manifest
+C:\Users\leath\source\repos\QuackyDocsV2Desktop\QuackyDocsV2Desktop\obj\Debug\QuackyDocsV2Desktop.application

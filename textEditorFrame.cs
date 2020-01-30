@@ -16,6 +16,8 @@ namespace QuackyDocsV2Desktop
     {
         PrivateFontCollection pfc = new PrivateFontCollection();
         public int fileMenuState = 0;
+        public String file = null;
+
         public textEditorFrame()
         {
             InitializeComponent();
@@ -49,36 +51,41 @@ namespace QuackyDocsV2Desktop
             }
         }
 
-        private void textArea_TextChanged(object sender, EventArgs e)
-        {
-            using (StreamWriter writer = new StreamWriter(@"C:\Users\leath\source\repos\WindowsFormsApp1\WindowsFormsApp1\user\test.txt"))
-            {
-                writer.WriteLine(textArea.Text);
-            }
-        }
-
         private void fontDropDown_SelectedIndexChanged(object sender, EventArgs e)
         {
+            int size = Int32.Parse(fontSizeDropDown.Text);
             Console.WriteLine(fontDropDown.SelectedItem);
-            if (fontDropDown.SelectedItem == "Source Code Pro")
+            if (fontDropDown.SelectedItem == "Source Code Pro Medium")
             {
                 // Change the textArea font twice for auto refrshing
                 for (int i = 0; i < 3; i++)
                 {
-                    textArea.Font = new Font(pfc.Families[0], 15, FontStyle.Regular);
+                    textArea.Font = new Font(pfc.Families[0], size, FontStyle.Regular);
                 }
             }
 
             else
             {
-                textArea.SelectionFont = new Font(fontDropDown.Text, 12, FontStyle.Regular); ;
+                textArea.Font = new Font(fontDropDown.Text, size, FontStyle.Regular);
+                Console.WriteLine(textArea.SelectionFont);
             }
         }
 
         private void fontSizeDropDown_SelectedIndexChanged(object sender, EventArgs e)
         {
             int size = Int32.Parse(fontSizeDropDown.Text);
-            textArea.SelectionFont = new Font(textArea.Font.FontFamily, size, FontStyle.Regular);
+            if (fontDropDown.SelectedIndex == 1)
+            {
+                Console.WriteLine("SOURCE");
+                for (int i = 0; i < 3; i++)
+                {
+                    textArea.Font = new Font(pfc.Families[0], size, FontStyle.Regular);
+                }
+            }
+            else
+            {
+                textArea.SelectionFont = new Font(fontDropDown.Text, size, FontStyle.Regular);
+            }
         }
 
         private void fontColorDropDown_SelectedIndexChanged(object sender, EventArgs e)
@@ -90,11 +97,78 @@ namespace QuackyDocsV2Desktop
         private void textEditorFrame_Load(object sender, EventArgs e)
         {
             pfc.AddFontFile(@"C:\xampp\htdocs\QuackyDocsV2\fonts\SourceCodePro-Medium.ttf");
-            fontDropDown.SelectedIndex = 0;
+            
+            textArea.LoadFile(file);
 
-            Console.WriteLine(textArea.Font.Size);
+            String size = textArea.SelectionFont.Size.ToString();
+            String font = textArea.SelectionFont.Name;
+            String color = textArea.SelectionColor.Name;
+            fontSizeDropDown.Text = size;
+            fontDropDown.Text = font;
+            fontColorDropDown.Text = color;
+            Console.WriteLine(size);
+        }
 
-            fontSizeDropDown.SelectedItem = textArea.Font.Size.ToString();
+        private void textArea_KeyUp(object sender, KeyEventArgs e)
+        {
+            save();
+        }
+
+        private void openFileBtn_MouseHover(object sender, EventArgs e)
+        {
+            openFileBtn.BackColor = Color.Gray;
+        }
+
+        private void openFileBtn_MouseLeave(object sender, EventArgs e)
+        {
+            openFileBtn.BackColor = Color.Black;
+        }
+
+        private void save()
+        {
+            textArea.SaveFile(file, RichTextBoxStreamType.RichText);
+        }
+
+        private void openFileBtn_Click(object sender, EventArgs e)
+        {
+            // Create an OpenFileDialog to request a file to open.
+            OpenFileDialog openFile1 = new OpenFileDialog();
+
+            // Initialize the OpenFileDialog to look for RTF files.
+            openFile1.DefaultExt = "*.rtf";
+            openFile1.Filter = "RTF Files|*.rtf";
+
+            // Determine whether the user selected a file from the OpenFileDialog.
+            if (openFile1.ShowDialog() == System.Windows.Forms.DialogResult.OK &&
+               openFile1.FileName.Length > 0)
+            {
+                // Load the contents of the file into the RichTextBox.
+                file = openFile1.FileName;
+                textArea.LoadFile(openFile1.FileName);
+
+                String size = textArea.SelectionFont.Size.ToString();
+                String font = textArea.SelectionFont.Name;
+                String color = textArea.SelectionColor.Name;
+                Console.WriteLine(textArea.SelectionColor.Name);
+                fontSizeDropDown.SelectedItem = size;
+                fontDropDown.SelectedItem = font;
+                fontColorDropDown.SelectedItem = color;
+            }
+        }
+
+        private void saveAsBtn_MouseHover(object sender, EventArgs e)
+        {
+            saveAsBtn.BackColor = Color.Gray;
+        }
+
+        private void saveAsBtn_MouseLeave(object sender, EventArgs e)
+        {
+            saveAsBtn.BackColor = Color.Black;
+        }
+
+        private void textEditorFrame_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            System.Windows.Forms.Application.Exit();
         }
     }
 }
