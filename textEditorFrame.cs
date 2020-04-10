@@ -9,6 +9,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Drawing.Text;
+using SautinSoft.Document;
+using Color = SautinSoft.Document.Color;
 
 namespace QuackyDocsV2Desktop
 {
@@ -17,6 +19,8 @@ namespace QuackyDocsV2Desktop
         PrivateFontCollection pfc = new PrivateFontCollection();
         public int fileMenuState = 0;
         public String file = null;
+        public String fileName = null;
+        public String fileWithoutExt = null;
 
         public textEditorFrame()
         {
@@ -53,28 +57,36 @@ namespace QuackyDocsV2Desktop
 
         private void fontDropDown_SelectedIndexChanged(object sender, EventArgs e)
         {
-            int size = Int32.Parse(fontSizeDropDown.Text);
-            Console.WriteLine(fontDropDown.SelectedItem);
-            if (fontDropDown.SelectedItem == "Source Code Pro Medium")
+            try
             {
-                // Change the textArea font twice for auto refrshing
-                for (int i = 0; i < 3; i++)
+                int size = Int32.Parse(fontSizeDropDown.Text);
+                Console.WriteLine(fontDropDown.SelectedItem);
+                if (fontDropDown.SelectedItem == "Source Code Pro Medium")
                 {
-                    textArea.Font = new Font(pfc.Families[0], size, FontStyle.Regular);
+                    // Change the textArea font twice for auto refrshing
+                    for (int i = 0; i < 3; i++)
+                    {
+                        textArea.Font = new Font(pfc.Families[0], size, FontStyle.Regular);
+                    }
+                }
+
+                else
+                {
+                    textArea.Font = new Font(fontDropDown.Text, size, FontStyle.Regular);
+                    Console.WriteLine(textArea.SelectionFont);
                 }
             }
-
-            else
+            catch (System.FormatException)
             {
-                textArea.Font = new Font(fontDropDown.Text, size, FontStyle.Regular);
-                Console.WriteLine(textArea.SelectionFont);
+                Console.WriteLine("Font Invailed");
             }
+
         }
 
         private void fontSizeDropDown_SelectedIndexChanged(object sender, EventArgs e)
         {
             int size = Int32.Parse(fontSizeDropDown.Text);
-            if (fontDropDown.SelectedIndex == 1)
+            if (fontDropDown.SelectedItem == "Source Code Pro Medium")
             {
                 Console.WriteLine("SOURCE");
                 for (int i = 0; i < 3; i++)
@@ -97,16 +109,22 @@ namespace QuackyDocsV2Desktop
         private void textEditorFrame_Load(object sender, EventArgs e)
         {
             pfc.AddFontFile(@"C:\xampp\htdocs\QuackyDocsV2\fonts\SourceCodePro-Medium.ttf");
-            
+
+
             textArea.LoadFile(file);
+            String convert = file;
+
+            Console.WriteLine(fileWithoutExt);
+            
+            fileNameBox.Text = fileName;
 
             String size = textArea.SelectionFont.Size.ToString();
             String font = textArea.SelectionFont.Name;
             String color = textArea.SelectionColor.Name;
-            fontSizeDropDown.Text = size;
-            fontDropDown.Text = font;
-            fontColorDropDown.Text = color;
-            Console.WriteLine(size);
+            Console.WriteLine(textArea.SelectionColor.Name);
+            fontSizeDropDown.SelectedItem = size;
+            fontDropDown.SelectedItem = font;
+            fontColorDropDown.SelectedItem = color;
         }
 
         private void textArea_KeyUp(object sender, KeyEventArgs e)
@@ -116,17 +134,23 @@ namespace QuackyDocsV2Desktop
 
         private void openFileBtn_MouseHover(object sender, EventArgs e)
         {
-            openFileBtn.BackColor = Color.Gray;
+            openFileBtn.BackColor = System.Drawing.Color.Gray;
         }
 
         private void openFileBtn_MouseLeave(object sender, EventArgs e)
         {
-            openFileBtn.BackColor = Color.Black;
+            openFileBtn.BackColor = System.Drawing.Color.Black;
         }
 
-        private void save()
+        private async void save()
         {
             textArea.SaveFile(file, RichTextBoxStreamType.RichText);
+            savedLabel.Visible = true;
+            savedLabel.Text = "Saving...";
+            await Task.Delay(1000);
+            savedLabel.Text = "Saved";
+
+
         }
 
         private void openFileBtn_Click(object sender, EventArgs e)
@@ -144,7 +168,10 @@ namespace QuackyDocsV2Desktop
             {
                 // Load the contents of the file into the RichTextBox.
                 file = openFile1.FileName;
+                fileName = openFile1.SafeFileName;
+
                 textArea.LoadFile(openFile1.FileName);
+                fileNameBox.Text = fileName;
 
                 String size = textArea.SelectionFont.Size.ToString();
                 String font = textArea.SelectionFont.Name;
@@ -153,22 +180,73 @@ namespace QuackyDocsV2Desktop
                 fontSizeDropDown.SelectedItem = size;
                 fontDropDown.SelectedItem = font;
                 fontColorDropDown.SelectedItem = color;
+
+                fileMenu.Visible = false;
+                
             }
-        }
-
-        private void saveAsBtn_MouseHover(object sender, EventArgs e)
-        {
-            saveAsBtn.BackColor = Color.Gray;
-        }
-
-        private void saveAsBtn_MouseLeave(object sender, EventArgs e)
-        {
-            saveAsBtn.BackColor = Color.Black;
         }
 
         private void textEditorFrame_FormClosed(object sender, FormClosedEventArgs e)
         {
             System.Windows.Forms.Application.Exit();
+        }
+
+        private void duckBtn_Click(object sender, EventArgs e)
+        {
+            textArea.SaveFile(file, RichTextBoxStreamType.RichText);
+
+            this.Hide();
+            var mainMenu = new mainMenuFrame();
+            mainMenu.Closed += (s, args) => this.Close();
+            mainMenu.Show();
+            mainMenu.Height = this.Height;
+            mainMenu.Width = this.Width;
+            mainMenu.Location = this.Location;
+        }
+
+        private void textArea_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Modifiers == Keys.Control && e.KeyCode == Keys.S)
+            {
+                save();
+                Console.WriteLine("Save");
+            }
+        }
+
+        private void topToolBar_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        {
+            if (e.Modifiers == Keys.Control && e.KeyCode == Keys.S)
+            {
+                save();
+                Console.WriteLine("Save");
+            }
+        }
+
+        private void divider_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        {
+            if (e.Modifiers == Keys.Control && e.KeyCode == Keys.S)
+            {
+                save();
+                Console.WriteLine("Save");
+            }
+        }
+
+        private void bottomToolBar_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        {
+            if (e.Modifiers == Keys.Control && e.KeyCode == Keys.S)
+            {
+                save();
+                Console.WriteLine("Save");
+            }
+        }
+
+        private void fileNameBox_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        {
+            if (e.Modifiers == Keys.Control && e.KeyCode == Keys.S)
+            {
+                save();
+                Console.WriteLine("Save");
+            }
         }
     }
 }

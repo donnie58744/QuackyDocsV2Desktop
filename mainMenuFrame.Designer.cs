@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(mainMenuFrame));
             this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.createFileBtn = new System.Windows.Forms.Button();
             this.title = new System.Windows.Forms.Label();
@@ -77,8 +78,9 @@
             this.Controls.Add(this.title);
             this.Controls.Add(this.createFileBtn);
             this.Controls.Add(this.openFileBtn);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "mainMenuFrame";
-            this.Text = "Form1";
+            this.Text = "Main Menu";
             this.ResumeLayout(false);
             this.PerformLayout();
 

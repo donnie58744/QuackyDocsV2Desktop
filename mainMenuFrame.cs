@@ -65,8 +65,8 @@ namespace QuackyDocsV2Desktop
             OpenFileDialog openFile1 = new OpenFileDialog();
 
             // Initialize the OpenFileDialog to look for RTF files.
-            openFile1.DefaultExt = "*.txt";
-            openFile1.Filter = "TXT Files|*.rtf";
+            openFile1.DefaultExt = "*.rtf";
+            openFile1.Filter = "RTF Files (*.rtf)|*.rtf|TXT Files(*.txt)|*.txt";
 
             // Determine whether the user selected a file from the OpenFileDialog.
             if (openFile1.ShowDialog() == System.Windows.Forms.DialogResult.OK &&
@@ -74,13 +74,14 @@ namespace QuackyDocsV2Desktop
             {
                 // Load the contents of the file into the RichTextBox.
                 textEditor.file = openFile1.FileName;
+                textEditor.fileName = openFile1.SafeFileName;
+                textEditor.fileWithoutExt = Path.GetFileNameWithoutExtension(textEditor.file);
                 textEditor.Show();
                 textEditor.Height = this.Height;
                 textEditor.Width = this.Width;
                 textEditor.Location = this.Location;
 
                 this.Hide();
-
             }
         }
     }

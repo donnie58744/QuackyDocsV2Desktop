@@ -20,7 +20,6 @@ C:\Users\leath\source\repos\QuackyDocsV2Desktop\QuackyDocsV2Desktop\bin\Debug\Ne
 C:\Users\leath\source\repos\QuackyDocsV2Desktop\QuackyDocsV2Desktop\bin\Debug\Newtonsoft.Json.xml
 C:\Users\leath\source\repos\QuackyDocsV2Desktop\QuackyDocsV2Desktop\obj\Debug\QuackyDocsV2Desktop.csproj.CopyComplete
 C:\Users\leath\source\repos\QuackyDocsV2Desktop\QuackyDocsV2Desktop\obj\Debug\QuackyDocsV2Desktop.mainMenuFrame.resources
-C:\Users\leath\source\repos\QuackyDocsV2Desktop\QuackyDocsV2Desktop\bin\Debug\SautinSoft.Document.dll
 C:\Users\leath\source\repos\QuackyDocsV2Desktop\QuackyDocsV2Desktop\bin\Debug\SautinSoft.Document.xml
 C:\Users\leath\source\repos\QuackyDocsV2Desktop\QuackyDocsV2Desktop\bin\Debug\QuackyDocsV2Desktop.exe.manifest
 C:\Users\leath\source\repos\QuackyDocsV2Desktop\QuackyDocsV2Desktop\bin\Debug\QuackyDocsV2Desktop.application
