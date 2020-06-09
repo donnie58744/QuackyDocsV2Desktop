@@ -113,17 +113,15 @@ namespace QuackyDocsV2Desktop
 
             textArea.LoadFile(file);
             String convert = file;
-
-            Console.WriteLine(fileWithoutExt);
             
             fileNameBox.Text = fileName;
 
             String size = textArea.SelectionFont.Size.ToString();
             String font = textArea.SelectionFont.Name;
             String color = textArea.SelectionColor.Name;
-            Console.WriteLine(textArea.SelectionColor.Name);
             fontSizeDropDown.SelectedItem = size;
             fontDropDown.SelectedItem = font;
+            Console.WriteLine(fontDropDown.SelectedText);
             fontColorDropDown.SelectedItem = color;
         }
 

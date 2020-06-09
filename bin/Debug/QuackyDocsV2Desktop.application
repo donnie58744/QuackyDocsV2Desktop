@@ -4,17 +4,17 @@
   <description asmv2:publisher="QuackyDocsV2Desktop" asmv2:product="QuackyDocsV2Desktop" xmlns="urn:schemas-microsoft-com:asm.v1" />
   <deployment install="true" mapFileExtensions="true" />
   <compatibleFrameworks xmlns="urn:schemas-microsoft-com:clickonce.v2">
-    <framework targetVersion="4.7.2" profile="Full" supportedRuntime="4.0.30319" />
+    <framework targetVersion="4.6.1" profile="Full" supportedRuntime="4.0.30319" />
   </compatibleFrameworks>
   <dependency>
-    <dependentAssembly dependencyType="install" codebase="QuackyDocsV2Desktop.exe.manifest" size="4900">
+    <dependentAssembly dependencyType="install" codebase="QuackyDocsV2Desktop.exe.manifest" size="4902">
       <assemblyIdentity name="QuackyDocsV2Desktop.exe" version="1.0.0.4" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="msil" type="win32" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>054lS76FBDAsAB6H0XuCzTDveKKek6t4Z4jF36AH5tw=</dsig:DigestValue>
+        <dsig:DigestValue>ex2N1maZgDsVMfgw8i328u6lDYwnNSzWl7baDW3Wyr4=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
