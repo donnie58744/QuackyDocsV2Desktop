@@ -120,9 +120,15 @@ namespace QuackyDocsV2Desktop
             String font = textArea.SelectionFont.Name;
             String color = textArea.SelectionColor.Name;
             fontSizeDropDown.SelectedItem = size;
-            fontDropDown.SelectedItem = font;
             Console.WriteLine(fontDropDown.SelectedText);
             fontColorDropDown.SelectedItem = color;
+
+            if (fontDropDown.SelectedItem == null)
+            {
+                fontDropDown.SelectedIndex = 3;
+            }
+
+            fontDropDown.SelectedItem = font;
         }
 
         private void textArea_KeyUp(object sender, KeyEventArgs e)

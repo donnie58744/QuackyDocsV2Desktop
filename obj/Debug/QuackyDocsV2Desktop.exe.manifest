@@ -54,14 +54,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="QuackyDocsV2Desktop.exe" size="149984">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="QuackyDocsV2Desktop.exe" size="150496">
       <assemblyIdentity name="QuackyDocsV2Desktop" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>mBN50gbbKLIrGs19mTjWpeI1Aq/4CrOJxYcDJas1SUk=</dsig:DigestValue>
+        <dsig:DigestValue>v4aDhIiA/02HNwLG67+x6bOT1EXCem5Z/z72Qbc76MY=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
