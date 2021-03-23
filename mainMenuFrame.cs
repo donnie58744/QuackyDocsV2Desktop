@@ -15,12 +15,13 @@ namespace QuackyDocsV2Desktop
 {
     public partial class mainMenuFrame : Form
     {
-        textEditorFrame textEditor = new textEditorFrame();
-
+        textEditorFrame textEditor = new textEditorFrame(filename);
+        public static String filename;
 
         public mainMenuFrame()
         {
             InitializeComponent();
+            
         }
 
         private void createFileBtn_Click(object sender, EventArgs e)
@@ -32,11 +33,12 @@ namespace QuackyDocsV2Desktop
             saveFileDialog.FilterIndex = 2;
             saveFileDialog.RestoreDirectory = true;
             
+
             if (saveFileDialog.ShowDialog() == DialogResult.OK)
             {
                 if ((myStream = saveFileDialog.OpenFile()) != null)
                 {
-                    textEditor.file = saveFileDialog.FileName;
+                    
                     
                     myStream.Close();
 
@@ -49,16 +51,18 @@ namespace QuackyDocsV2Desktop
                     // Save Rtf to a file
                     dc.Save(rtfPath, new RtfSaveOptions());
 
-                    textEditor.Show();
+                    Form frm = new textEditorFrame(saveFileDialog.FileName);
+                    frm.Show();
                     textEditor.Height = this.Height;
                     textEditor.Width = this.Width;
                     textEditor.Location = this.Location;
 
+                    
                     this.Hide();
                 }
             }
         }
-
+        
         private void openFileBtn_Click(object sender, EventArgs e)
         {
             // Create an OpenFileDialog to request a file to open.
@@ -72,17 +76,31 @@ namespace QuackyDocsV2Desktop
             if (openFile1.ShowDialog() == System.Windows.Forms.DialogResult.OK &&
                openFile1.FileName.Length > 0)
             {
-                // Load the contents of the file into the RichTextBox.
-                textEditor.file = openFile1.FileName;
-                textEditor.fileName = openFile1.SafeFileName;
-                textEditor.fileWithoutExt = Path.GetFileNameWithoutExtension(textEditor.file);
-                textEditor.Show();
+                // Load the contents of the file into the RichTextBox.                
                 textEditor.Height = this.Height;
                 textEditor.Width = this.Width;
                 textEditor.Location = this.Location;
+                filename = Path.GetFileNameWithoutExtension(textEditor.file);
+
+                Form frm = new textEditorFrame(openFile1.FileName);
+                frm.Show();
 
                 this.Hide();
             }
         }
+
+        public static void setFilename(String LoginName)
+        {
+            mainMenuFrame.filename = LoginName;
+        }
+
+        public static String getFileName()
+        {
+            Console.WriteLine(filename);
+            return filename;
+            
+        }
+
+        
     }
 }

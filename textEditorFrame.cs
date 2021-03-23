@@ -22,9 +22,10 @@ namespace QuackyDocsV2Desktop
         public String fileName = null;
         public String fileWithoutExt = null;
 
-        public textEditorFrame()
+        public textEditorFrame(String name)
         {
             InitializeComponent();
+            fileName = name;
         }
 
         private void fileMenuBtn_Click(object sender, EventArgs e)
@@ -108,13 +109,15 @@ namespace QuackyDocsV2Desktop
 
         private void textEditorFrame_Load(object sender, EventArgs e)
         {
-            pfc.AddFontFile(@"C:\xampp\htdocs\QuackyDocsV2\fonts\SourceCodePro-Medium.ttf");
+            pfc.AddFontFile(@"C:/Users/leath/Downloads/QuackyDocsV2Desktop/Resources/SourceCodePro-Medium.ttf");
 
-
-            textArea.LoadFile(file);
-            String convert = file;
             
-            fileNameBox.Text = fileName;
+            textArea.LoadFile(fileName);
+            String convert = fileName;
+
+            Console.WriteLine(fileName);
+            fileNameBox.Text=(fileName);
+            
 
             String size = textArea.SelectionFont.Size.ToString();
             String font = textArea.SelectionFont.Name;
@@ -148,7 +151,7 @@ namespace QuackyDocsV2Desktop
 
         private async void save()
         {
-            textArea.SaveFile(file, RichTextBoxStreamType.RichText);
+            textArea.SaveFile(fileName, RichTextBoxStreamType.RichText);
             savedLabel.Visible = true;
             savedLabel.Text = "Saving...";
             await Task.Delay(1000);
@@ -172,7 +175,7 @@ namespace QuackyDocsV2Desktop
             {
                 // Load the contents of the file into the RichTextBox.
                 file = openFile1.FileName;
-                fileName = openFile1.SafeFileName;
+                fileName = openFile1.FileName;
 
                 textArea.LoadFile(openFile1.FileName);
                 fileNameBox.Text = fileName;

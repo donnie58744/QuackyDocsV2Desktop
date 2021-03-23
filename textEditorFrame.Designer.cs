@@ -38,10 +38,10 @@
             this.textArea = new System.Windows.Forms.RichTextBox();
             this.divider = new System.Windows.Forms.Panel();
             this.bottomToolBar = new System.Windows.Forms.Panel();
+            this.savedLabel = new System.Windows.Forms.Label();
             this.fontColorDropDown = new System.Windows.Forms.ComboBox();
             this.fontSizeDropDown = new System.Windows.Forms.ComboBox();
             this.fontDropDown = new System.Windows.Forms.ComboBox();
-            this.savedLabel = new System.Windows.Forms.Label();
             this.topToolBar.SuspendLayout();
             this.fileMenu.SuspendLayout();
             this.bottomToolBar.SuspendLayout();
@@ -80,9 +80,11 @@
             this.fileNameBox.ForeColor = System.Drawing.Color.White;
             this.fileNameBox.Location = new System.Drawing.Point(90, 11);
             this.fileNameBox.Margin = new System.Windows.Forms.Padding(2);
+            this.fileNameBox.MaximumSize = new System.Drawing.Size(500, 29);
+            this.fileNameBox.MinimumSize = new System.Drawing.Size(300, 29);
             this.fileNameBox.Name = "fileNameBox";
             this.fileNameBox.ReadOnly = true;
-            this.fileNameBox.Size = new System.Drawing.Size(224, 29);
+            this.fileNameBox.Size = new System.Drawing.Size(500, 29);
             this.fileNameBox.TabIndex = 0;
             this.fileNameBox.TabStop = false;
             this.fileNameBox.WordWrap = false;
@@ -165,6 +167,19 @@
             this.bottomToolBar.TabIndex = 6;
             this.bottomToolBar.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.bottomToolBar_PreviewKeyDown);
             // 
+            // savedLabel
+            // 
+            this.savedLabel.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.savedLabel.AutoSize = true;
+            this.savedLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.savedLabel.ForeColor = System.Drawing.Color.White;
+            this.savedLabel.Location = new System.Drawing.Point(888, 24);
+            this.savedLabel.Name = "savedLabel";
+            this.savedLabel.Size = new System.Drawing.Size(48, 17);
+            this.savedLabel.TabIndex = 0;
+            this.savedLabel.Text = "Saved";
+            this.savedLabel.Visible = false;
+            // 
             // fontColorDropDown
             // 
             this.fontColorDropDown.Anchor = System.Windows.Forms.AnchorStyles.None;
@@ -225,19 +240,6 @@
             this.fontDropDown.Size = new System.Drawing.Size(136, 28);
             this.fontDropDown.TabIndex = 0;
             this.fontDropDown.SelectedIndexChanged += new System.EventHandler(this.fontDropDown_SelectedIndexChanged);
-            // 
-            // savedLabel
-            // 
-            this.savedLabel.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.savedLabel.AutoSize = true;
-            this.savedLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.savedLabel.ForeColor = System.Drawing.Color.White;
-            this.savedLabel.Location = new System.Drawing.Point(888, 24);
-            this.savedLabel.Name = "savedLabel";
-            this.savedLabel.Size = new System.Drawing.Size(48, 17);
-            this.savedLabel.TabIndex = 0;
-            this.savedLabel.Text = "Saved";
-            this.savedLabel.Visible = false;
             // 
             // textEditorFrame
             // 
