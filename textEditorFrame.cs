@@ -62,20 +62,8 @@ namespace QuackyDocsV2Desktop
             {
                 int size = Int32.Parse(fontSizeDropDown.Text);
                 Console.WriteLine(fontDropDown.SelectedItem);
-                if (fontDropDown.SelectedItem == "Source Code Pro Medium")
-                {
-                    // Change the textArea font twice for auto refrshing
-                    for (int i = 0; i < 3; i++)
-                    {
-                        textArea.Font = new Font(pfc.Families[0], size, FontStyle.Regular);
-                    }
-                }
-
-                else
-                {
-                    textArea.Font = new Font(fontDropDown.Text, size, FontStyle.Regular);
-                    Console.WriteLine(textArea.SelectionFont);
-                }
+                textArea.Font = new Font(fontDropDown.Text, size, FontStyle.Regular);
+                Console.WriteLine(textArea.SelectionFont);
             }
             catch (System.FormatException)
             {
@@ -108,10 +96,7 @@ namespace QuackyDocsV2Desktop
         }
 
         private void textEditorFrame_Load(object sender, EventArgs e)
-        {
-            pfc.AddFontFile(@"C:/Users/leath/Downloads/QuackyDocsV2Desktop/Resources/SourceCodePro-Medium.ttf");
-
-            
+        {   
             textArea.LoadFile(fileName);
             String convert = fileName;
 
@@ -200,7 +185,7 @@ namespace QuackyDocsV2Desktop
 
         private void duckBtn_Click(object sender, EventArgs e)
         {
-            textArea.SaveFile(file, RichTextBoxStreamType.RichText);
+            textArea.SaveFile(fileName, RichTextBoxStreamType.RichText);
 
             this.Hide();
             var mainMenu = new mainMenuFrame();
